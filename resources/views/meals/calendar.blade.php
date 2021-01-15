@@ -2,7 +2,10 @@
 
 @section('content')
 
-    <table>
+    <p>Here is a link to the 
+    <a href="https://calendar.google.com/calendar/u/0?cid=OGppMGE2bmFxN29jcGdqNjI2Y3NiM280OTRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">
+    Google Calendar for Avery Events</a></p> 
+    <!-- <table>
         <tr>
             <th>Date</th>
             <th>Wed. 9/20</th>
@@ -57,7 +60,7 @@
             <th></th>
 
         </tr>
-    </table>
+    </table> -->
 @endsection
 
 @section('footer')

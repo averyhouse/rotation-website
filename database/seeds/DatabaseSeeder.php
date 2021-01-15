@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(gameSeeder::class);
 
         // Migration
-        $this->call(testGotchaSeeder::class);
+        // $this->call(testGotchaSeeder::class);
         //Model::reguard();
     }
 }

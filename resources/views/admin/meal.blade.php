@@ -6,7 +6,7 @@
     <div class="col-md-3">
         <ul style="list-style-type: none;padding:0;">
             @foreach($prefrosh as $prefroshy)
-                <li style="text-decoration: none;"><a href="/comments/{{$prefroshy->id}}">{{$prefroshy->name}}</a></li>
+                <li style="text-decoration: none;"><a href="{{ url('/comments',$prefroshy->id)}}">{{$prefroshy->name}}</a></li>
             @endforeach
         </ul>
     </div>
@@ -18,15 +18,15 @@
                 <?php $idx++ ?>
 
                 <div class="col-md-4">
-                    <a href="/comments/{{$prefroshy->id }}">
-                        <img src="/images/{{ $prefroshy->picture }}" width="200">
+                    <a href="{{ url('/comments',$prefroshy->id)}}">
+                        <img src="{{ url('../images', $prefroshy->picture) }}" width="200">
 
                         <p> {{ $prefroshy->name }}</p>
                     </a>
 
                     <p>Rating: {{$prefroshy->sumScore}}</p>
                     <p>Reviews: {{$prefroshy->numComments}}</p>
-                    <p><a href="/comments/{{$prefroshy->id }}"><b>More</b></a></p>
+                    <p><a href="{{ url('/comments',$prefroshy->id)}}"><b>More</b></a></p>
                 </div>
                 </a>
                 @if($idx % 3 == 0)

@@ -9,7 +9,7 @@ class gameSeeder extends Seeder
     {
 
         // Create all users.
-        $file = fopen('/home/david/gdrive/avery_house/avery_rotation/public/users.csv', 'r');
+        $file = fopen('public/users.csv', 'r');
         while (true) {
             $user = fgetcsv($file);
             if(!$user)
@@ -32,7 +32,7 @@ class gameSeeder extends Seeder
         $adminUser->save();
 
         // Create all prefrosh.
-        $file = fopen('/home/david/gdrive/avery_house/avery_rotation/public/prefrosh.csv', 'r');
+        $file = fopen('public/prefrosh.csv', 'r');
         $first = true;
         $numMeals = 0;
         while (true) {
@@ -67,7 +67,9 @@ class gameSeeder extends Seeder
                 $curPrefrosh->name = $prefrosh[1] . ' "' . $prefrosh[2] . '" ' . $prefrosh[0];
 
             }
-            $curPrefrosh->picture = $prefrosh[0] . '_' . $prefrosh[1] . '.JPG';
+            $last_name = strtolower(trim($prefrosh[0]));
+            $first_init = strtolower(trim($prefrosh[1]))[0];
+            $curPrefrosh->picture = $first_init . '_' . $last_name . '.PNG';
 
             $curPrefrosh->lastName = $prefrosh[0];
             $curPrefrosh->save();

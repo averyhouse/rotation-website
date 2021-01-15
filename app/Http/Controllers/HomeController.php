@@ -27,8 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $defaultMeal = 5;
-        return redirect(action('HomeController@show', $defaultMeal));
+        // $defaultMeal = 0;
+        // return redirect(action('HomeController@show', $defaultMeal));
+        return redirect(action('UsersController@index'));
     }
 
     /**
@@ -36,6 +37,9 @@ class HomeController extends Controller
      */
     public function show($id)
     {
+        if ($id == 0) {
+            return redirect(action('UsersController@index'));
+        }
         View::share('curMealID', $id);
         $meal = Meal::findOrFail($id);
         // Get all prefrosh associated with meal

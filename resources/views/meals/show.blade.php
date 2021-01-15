@@ -6,7 +6,7 @@
     <div class="col-md-3">
     <ul style="list-style-type: none;padding:0;">
         @foreach($prefrosh as $prefroshy)
-            <li style="text-decoration: none;"><a href="/comments/{{$prefroshy->id}}/edit">{{$prefroshy->name}}</a></li>
+            <li style="text-decoration: none;"><a href="{{ url('/comments',$prefroshy->id) . '/' . $meal->id . '/edit' }}">{{$prefroshy->name}}</a></li>
         @endforeach
     </ul>
     </div>
@@ -18,15 +18,15 @@
             <?php $idx++ ?>
 
             <div class="col-md-4">
-                <a href="/comments/{{$prefroshy->id }}/edit">
-                    <img src="/images/{{ $prefroshy->picture }}" width="200">
+                <a href="{{ url('/comments',$prefroshy->id) . '/' . $meal->id . '/edit' }}">
+                    <img src="{{ url('../images', $prefroshy->picture) }}" width="200">
 
                     <p> {{ $prefroshy->name }}</p>
                 </a>
 
                 <p>Rating: {{$comments[$index]->rating}}</p>
                 <p>Review: {{$comments[$index]->review}}
-                    <a href="/comments/{{$prefroshy->id }}/edit"><b>Edit</b></a>
+                    <a href="{{ url('/comments',$prefroshy->id) . '/' . $meal->id . '/edit' }}"><b>Edit</b></a>
                 </p>
             </div>
             </a>

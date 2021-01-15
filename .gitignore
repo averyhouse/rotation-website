@@ -5,3 +5,6 @@ Homestead.json
 .env
 .idea/
 .vagrant/
+env/
+public/images/
+public/*.csv

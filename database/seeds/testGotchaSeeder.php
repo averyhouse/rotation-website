@@ -11,7 +11,7 @@ class testGotchaSeeder extends Seeder
      */
     public function run()
     {
-        $file = fopen('/home/david/gdrive/avery_house/avery_rotation/public/migration.csv', 'r');
+        $file = fopen('public/migration.csv', 'r');
         $legend = fgetcsv($file);
 
         while (true) {

@@ -28,7 +28,7 @@
     <div class="col-md-3">
         <ul style="list-style-type: none;padding:0;">
             @foreach($prefrosh as $prefroshy)
-                <li style="text-decoration: none;"><a href="/comments/{{$prefroshy->id}}">{{$prefroshy->name}}</a></li>
+                <li style="text-decoration: none;"><a href="{{ url('/comments',$prefroshy->id)}}">{{$prefroshy->name}}</a></li>
             @endforeach
         </ul>
     </div>
@@ -41,21 +41,22 @@
                 <?php $idx++ ?>
 
                 <div class="col-md-4">
-                    <a href="/comments/{{$prefroshy->id }}">
-                        <img src="/images/{{ $prefroshy->picture }}" width="200">
+                    <a href="{{ url('/comments',$prefroshy->id)}}">
+                        <img src="{{ url('../images', $prefroshy->picture) }}" width="200">
 
                         <p> {{ $prefroshy->name }}</p>
                     </a>
                     {!! Form::label($prefroshy->id, 'Tier: ') !!}
                     {!! Form::select($prefroshy->id, array(2 => "Great", 1 => "Good", 0 => "Neutral", -1 => "No Information", -2 => "Poor"), $prefroshy->tier, ['class' => 'form-control']) !!}
                     @if($show_ratings)
-
-                        <p>Rating: {{$prefroshy->sumScore}}</p>
+                        <p>Average Rating: {{number_format($prefroshy->averageScore, 2)}} </p>
+                        <p>Total Rating: {{$prefroshy->sumScore}}</p>
                     @else
-                        <p>Rating: N/A </p>
+                        <p> Average Rating: N/A </p>
+                        <p>Total Rating: N/A </p>
                     @endif
                     <p>Reviews: {{$prefroshy->numComments}}</p>
-                        <a class='btn btn-primary' href="/comments/{{$prefroshy->id }}"><b>More</b></a>
+                        <a class='btn btn-primary' href="{{ url('/comments',$prefroshy->id)}}"><b>More</b></a>
                     <!--{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}-->
 
                     </p>

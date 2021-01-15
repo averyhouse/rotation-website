@@ -21,21 +21,20 @@ class CommentsController extends Controller
     /* show page to edit a comment
      * Note: id is of prefrosh since a user should only be able to edit one comment per prefrosh
      * */
-    public function edit($id)
+    public function edit($prefrosh_id, $meal_id)
     {
-
-        $prefrosh = Prefrosh::findOrFail($id);
+        $prefrosh = Prefrosh::findOrFail($prefrosh_id);
         $comment = $prefrosh->comments()->where('user_id', \Auth::user()->id)->first();
         if ($comment->user_id != \Auth::user()->id) {
             return "Access denied";
         }
         $meals = $prefrosh->meals()->get();
-        return view('comments.edit', compact('comment', 'prefrosh', 'meals'));
+        return view('comments.edit', compact('comment', 'prefrosh', 'meals', 'meal_id'));
     }
 
-    public function update($id, CommentRequest $request)
+    public function update($comment_id, CommentRequest $request)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($comment_id);
         if ($comment->user_id != \Auth::user()->id) {
             return "Access denied" . $comment . "not equal to " . \Auth::user()->id;
         }
@@ -52,7 +51,8 @@ class CommentsController extends Controller
         $prefrosh->save();
 
         $comment->update($request->all());
-        return redirect(action('HomeController@show', $comment->prefrosh()->first()->meals()->first()->id));
+        // return redirect(action('HomeController@show', $comment->prefrosh()->first()->meals()->first()->id));
+        return redirect(action('HomeController@show', $request->meal_id));
     }
 
     /* show page of comment
@@ -88,7 +88,7 @@ class CommentsController extends Controller
 
     public function migrate()
     {
-        $file = fopen('/home/david/gdrive/avery_house/avery_rotation/public/migrate.csv', 'r');
+        $file = fopen('public/migrate.csv', 'r');
         $legend = fgetcsv($file);
         // Parse legend.
         for ($idx = 2; $idx < count($legend); $idx++) {

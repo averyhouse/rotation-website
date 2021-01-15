@@ -1,7 +1,7 @@
 @extends('layouts.editApp')
 
 @section('content')
-    <img src="/images/{{$prefrosh->picture}}" width="200px">
+    <img src="{{ url('../images', $prefrosh->picture) }}" width="200px">
     <h1>{{$prefrosh->name}}</h1>
     Meals:
     <ul>
@@ -10,7 +10,7 @@
         @endforeach
     </ul>
     <h1> Comment</h1>
-    {!! Form::model($comment, ['method' => 'PATCH', 'action' => ['CommentsController@update', $comment->id]]) !!}
+    {!! Form::model($comment, ['method' => 'PATCH', 'action' => ['CommentsController@update', $comment->id, 'meal_id=' . $meal_id]]) !!}
 
     <div class="form-group">
         {!! Form::label('rating', 'Rating:') !!}

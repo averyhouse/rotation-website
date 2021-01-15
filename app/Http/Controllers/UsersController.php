@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Prefrosh;
 use App\User;
 
-define("SHOW_TIERS", True);
+define("SHOW_TIERS", False);
 
 class UsersController extends Controller
 {
@@ -23,16 +23,16 @@ class UsersController extends Controller
      */
     public function index()
     {
-
-
         if (\Auth::user()->isAdmin()) {
             return redirect('users/index/2');
         }
-        if (SHOW_TIERS) {
+
+        if (constant("SHOW_TIERS")) {
             $prefrosh = Prefrosh::orderBy('tier', 'desc')->orderBy('averageScore', 'desc')->get();
         } else {
             $prefrosh = Prefrosh::orderBy('lastName', 'asc')->get();
         }
+
         // Get all comments associated with prefrosh
         $comments = array();
         foreach ($prefrosh as $prefroshy) {
@@ -41,7 +41,7 @@ class UsersController extends Controller
         }
 
         $tier_names = array(2 => "Great", 1 => "Good", 0 => "Neutral", -1 => "No Information", -2 => "Poor");
-        $show_tiers = SHOW_TIERS;
+        $show_tiers = constant("SHOW_TIERS");
         return view('prefrosh.index', compact('prefrosh', 'comments', 'show_tiers', 'tier_names'));
     }
 

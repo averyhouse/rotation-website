@@ -33,18 +33,16 @@ Route::get('/home', function(){
 });
 
 Route::get('meals/{id}', 'HomeController@show');
-/*
-Route::get('comment/edit/{id}', 'CommentsController@edit');
 
-Route::put('comments/{id}', 'CommentsController@update');
-*/
+Route::get('comments/{prefrosh_id}/{meal_id}/edit', 'CommentsController@edit');
+Route::get('comments/{id}', 'CommentsController@show');
+// Route::put('comments/{id}', 'CommentsController@update');
 Route::resource('comments', 'CommentsController');
 
 Route::get('users/index', 'UsersController@index');
-Route::put('users/index', 'UsersController@updateTiers');
+// Route::put('users/index', 'UsersController@updateTiers');
 Route::get('users/index/{id}', 'UsersController@sortedIndex');
-
-//Route::put('users/index/{id}', 'UsersController@updateTiers');
+// Route::put('users/index/{id}', 'UsersController@updateTiers');
 
 Route::get('calendar', function() {
     return view('meals/calendar');

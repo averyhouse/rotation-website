@@ -52,11 +52,12 @@ message_subject = 'Avery rotation website password'
 curDate = email.utils.formatdate(localtime=True)[:-14]
 curDate += '04:20:00 +500' #same
 message_content = (
-    "WHAT's popping, {0}!\n"
-    "We moved Avery rotation feedback to a WEBSITE! at avery.caltech.edu/rotation\n"
+    "Hi, {0}!\n"
+    "The rotation website should be up now at at https://avery.caltech.edu/rotation. "
+    "Here is your login information: \n"
     "\tUsername: {1}\n"
     "\tPassword: {2}\n"
-    "Now we can RATE and RANK and JUDGE the prefrosh all we want! SMASH that like button, subscribe, ring the bell!"
+    "Let me (Alvin) know if something doesn't work (something definitely doesn't)."
 )
 message_skeleton = "Date: {0}\r\nSubject: {1}\r\n\r\n{2}"
 
